@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
-import xgboost as xgb
+#import xgboost as xgb
 
 #Load dataset
 df = pd.read_csv("diabetes.csv")
