@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
 import seaborn as sns 
+import pickle
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -32,10 +33,18 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Train Model (Random Forest)
+# Train Model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
 y_pred = model.predict(X_test_scaled)
+
+# Save model and scaler
+import pickle
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)
+with open("scaler.pkl", "wb") as f:
+    pickle.dump(scaler, f)
+
 #Evaluate
 print(classification_report(y_test, y_pred))
 conf_matrix = confusion_matrix(y_test, y_pred)
